@@ -5,6 +5,8 @@ class APIFeatures {
    
     }
 
+   // http://localhost:4000/api/v1/products?keyword=one&category=Laptops
+
     search(){
         const keyword =this.queryStr.keyword ? {
             name : {
@@ -32,7 +34,13 @@ class APIFeatures {
 
         console.log(queryCopy)
 
-        this.query = this.query.find(queryCopy)
+        let queryStr = JSON.stringify(queryCopy)
+        console.log(queryStr)
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match =>`$${match}`)
+
+        console.log(queryStr)
+
+        this.query = this.query.find(JSON.parse(queryStr))
 
         return this;
     }
