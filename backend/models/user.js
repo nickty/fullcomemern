@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please enter product name'],
-        maxLength : [30, 'Product name cannot axceed 30 characters']
+        maxlength : [30, 'Product name cannot axceed 30 characters']
     },
     email: {
         type: String,
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Please enter product password'],
-        minLength: [6, 'Your Password must be longer than 6 characters'], 
+        minlength: [6, 'Your Password must be longer than 6 characters'], 
         select: false
     }, 
     avatar: {
@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     }, 
     role : {
         type: String,
-        default: user
+        default: 'user'
     }, 
     createAt: {
         type: Date,
