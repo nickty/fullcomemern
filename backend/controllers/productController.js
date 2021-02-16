@@ -24,7 +24,7 @@ exports.newProduct = catchAsyncErrors( async (req, res, next) => {
 
 exports.getProduct = catchAsyncErrors (async (req, res, next) => {
 
-    const resPerPage = 4;
+    const resPerPage = 8;
 
     const productsCount = await Product.countDocuments()
 
