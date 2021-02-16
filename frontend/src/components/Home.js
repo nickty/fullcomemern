@@ -1,8 +1,9 @@
 import React from 'react'
+import { Fragment } from 'react'
 
 const Home = () => {
     return (
-        <div className="container container-fluid">
+        <Fragment>
 
             <h1 id="products_heading">Latest Products</h1>
 
@@ -33,7 +34,7 @@ const Home = () => {
             </div>
             </section>
             
-        </div>
+        </Fragment>
     )
 }
 
