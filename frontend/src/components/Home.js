@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getProducts} from '../actions/productActions'
 import {useAlert} from 'react-alert'
 
-const Home = () => {
+const Home = ({ match }) => {
 
     const [currentPage, sectCurrentPage] = useState(1)
 
@@ -19,6 +19,8 @@ const Home = () => {
 
     const {loading, products, error, productsCount, resPerPage} = useSelector(state => state.products)
 
+    const keyword = match.params.keyword
+
      useEffect(() => {
 
         if(error){
@@ -26,7 +28,7 @@ const Home = () => {
         }
 
         
-        dispatch(getProducts(currentPage))
+        dispatch(getProducts(keyword, currentPage))
         
        
         
