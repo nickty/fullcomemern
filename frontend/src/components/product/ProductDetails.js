@@ -26,6 +26,7 @@ const ProductDetails = ({match}) => {
 
     return (
         <Fragment>
+            <MetaData title={product.name} />
         {loading ? <Loader /> : (
             <Fragment>
 
