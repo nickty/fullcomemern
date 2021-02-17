@@ -42,7 +42,7 @@ exports.loginUser = catchAsyncErrors (async (req, res, next) => {
     const user = await User.findOne({email}).select('+password')
 
     if(!user) {
-        return next(new ErrorHandler('Invalied or password', 401)) // 401 = un authenticated user
+        return next(new ErrorHandler('Invalied email or password', 401)) // 401 = un authenticated user
     }
 
     //Check if password matched or not 
