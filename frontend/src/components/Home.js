@@ -55,20 +55,23 @@ const Home = () => {
                     </div>
                     </section>
 
-                    <div className="d-flex justify-content-center mt-5">
-                                <Pagination
-                                    activePage={currentPage}
-                                    itemsCountPerPage = {resPerPage}
-                                    totalItemsCount = {productsCount}
-                                    onChange = {sectCurrentPageNo}
-                                    nextPageText= {'Next'}
-                                    prevPageText= {'Prev'}
-                                    firstPageText= {'First'}
-                                    lastPageText= {'Last'}
-                                    itemClass="page-item"
-                                    linkClass="page-link"
-                                />
-                    </div>
+                    {resPerPage <= productsCount && (
+                        <div className="d-flex justify-content-center mt-5">
+                        <Pagination
+                            activePage={currentPage}
+                            itemsCountPerPage = {resPerPage}
+                            totalItemsCount = {productsCount}
+                            onChange = {sectCurrentPageNo}
+                            nextPageText= {'Next'}
+                            prevPageText= {'Prev'}
+                            firstPageText= {'First'}
+                            lastPageText= {'Last'}
+                            itemClass="page-item"
+                            linkClass="page-link"
+                        />
+                        </div>
+                    )}            
+                    
                 </Fragment>
             )}
         
