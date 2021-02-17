@@ -24,7 +24,7 @@ exports.newProduct = catchAsyncErrors( async (req, res, next) => {
 
 exports.getProduct = catchAsyncErrors (async (req, res, next) => {
 
-    return next(new ErrorHandler('Customer error', 400))
+    //return next(new ErrorHandler('Customer error', 400))
 
     const resPerPage = 8;
 
