@@ -21,6 +21,23 @@ const Home = ({ match }) => {
 
     const [price, setPrice] = useState([1,1000])
 
+    const [category, setCategory] = useState('')
+
+    const categories = [
+        'Electronics',
+        'Cameras',
+        'Laptops',
+        'Accessories',
+        'Headphones',
+        'Food',
+        'Books',
+        'Clothes/Shoes',
+        'Beauty/Health',
+        'Sports',
+        'Outdoor',
+        'Home'
+    ]
+
     const alert = useAlert()
     const dispatch = useDispatch()
     
@@ -36,11 +53,11 @@ const Home = ({ match }) => {
         }
 
         
-        dispatch(getProducts(keyword, currentPage, price))
+        dispatch(getProducts(keyword, currentPage, price, category))
         
        
         
-    }, [dispatch, alert, error, currentPage, price])
+    }, [dispatch, alert, error, currentPage, price, category])
 
     function sectCurrentPageNo(pageNumber){
         sectCurrentPage(pageNumber)
@@ -78,6 +95,22 @@ const Home = ({ match }) => {
                                                 value={price}
                                                 onChange = {price => setPrice(price)}
                                             />
+
+                                            <hr className="my-5" />
+
+                                            <div className="mt-5">
+                                                <h4 className="mb-3">
+                                                    Categories
+                                                </h4>
+
+                                                <ul className="pl-0">
+                                                    {categories.map(category => (
+                                                        <li style={{cursor: 'pointer', listStyleType: 'none'}} key={category} onClick={()=> setCategory(category)}>
+                                                            {category}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
 
