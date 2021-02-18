@@ -3,18 +3,12 @@ const app = express()
 
 const errorMiddleware = require('./middlewares/errors')
 const cookieParser = require('cookie-parser')
-const cloudinary = require('cloudinary')
+const fileupload = require('express-fileupload')
 
 
 app.use(express.json())
 app.use(cookieParser())
-
-//Setting cloudinary
-cloudinary.config({
-    cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-})
+app.use(fileupload())
 
 const products = require('./routes/product')
 const users = require('./routes/user')
