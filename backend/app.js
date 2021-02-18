@@ -3,11 +3,13 @@ const app = express()
 
 const errorMiddleware = require('./middlewares/errors')
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 const fileupload = require('express-fileupload')
 
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(fileupload())
 
 const products = require('./routes/product')

@@ -47,7 +47,7 @@ export const getProductsDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
-            payload: error.response.data.errMessage
+            payload: error.response.data.errmessage
         })
     }
 }
