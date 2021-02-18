@@ -60,7 +60,7 @@ const Register = ({history}) => {
 
             reader.readAsDataURL(e.target.files[0])
         } else {
-            setUser ({...user, [e.target.name]: e.target.value})
+            setUser({...user, [e.target.name]: e.target.value})
         }
     }
 
@@ -126,7 +126,7 @@ const Register = ({history}) => {
                                     name='avatar'
                                     className='custom-file-input'
                                     id='customFile'
-                                    accept='images/*'
+                                    accept="images/*"
                                     onChange = {onChange}
                                 />
                                 <label className='custom-file-label' htmlFor='customFile'>

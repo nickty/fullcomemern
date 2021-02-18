@@ -29,7 +29,7 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 //register user 
-export const register = (userData) => async (dispatch) => {
+export const register = userData => async (dispatch) => {
 
     try {
 
@@ -41,7 +41,7 @@ export const register = (userData) => async (dispatch) => {
             }
         }
 
-        const {data} = await axios.post('/api/v1/register', {userData}, config)
+        const {data} = await axios.post('/api/v1/register', userData, config)
 
         console.log(data)
 

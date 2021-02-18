@@ -8,8 +8,8 @@ const fileupload = require('express-fileupload')
 
 
 app.use(express.json())
-app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(cookieParser())
 app.use(fileupload())
 
 const products = require('./routes/product')
