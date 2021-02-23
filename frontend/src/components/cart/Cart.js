@@ -16,6 +16,23 @@ const Cart = () => {
     const dispatch = useDispatch()
     const {cartItems} = useSelector(state => state.cart)
 
+    const increaseQty = (id, qty, stock) => {
+        const newQty = qty + 1;
+
+        if(newQty > stock) return;
+
+        dispatch(addItemToCart(id, newQty))
+    }
+
+    const decreaseQty = (id, qty) => {
+
+        const newQty = qty - 1;
+
+        if(newQty <= 0) return;
+
+        dispatch(addItemToCart(id, newQty))
+    }
+
     return (
         <Fragment>
              <MetaData title={'Your Card'} />
@@ -46,10 +63,10 @@ const Cart = () => {
 
                         <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                             <div className="stockCounter d-inline">
-                                <span className="btn btn-danger minus">-</span>
-                                <input type="number" className="form-control count d-inline" value="1" readOnly />
+                                <span className="btn btn-danger minus" onClick={ () => decreaseQty(item.product, item.qty)}>-</span>
+                                <input type="number" className="form-control count d-inline" value={item.qty} readOnly />
 
-								<span className="btn btn-primary plus">+</span>
+								<span className="btn btn-primary plus" onClick = {() => increaseQty(item.product, item.qty, item.stock)}>+</span>
                             </div>
                         </div>
 
