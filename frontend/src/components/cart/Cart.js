@@ -7,7 +7,7 @@ import MetaData from '../layout/MetaData'
 import {useAlert} from 'react-alert'
 
 import {useDispatch, useSelector} from 'react-redux'
-import {addItemToCart} from '../../actions/cartActions'
+import {addItemToCart, removeItemFromCart} from '../../actions/cartActions'
 import { Fragment } from 'react'
 
 
@@ -15,6 +15,10 @@ const Cart = () => {
 
     const dispatch = useDispatch()
     const {cartItems} = useSelector(state => state.cart)
+
+    const removeItemFromCartHanlder = (id) => {
+        dispatch(removeItemFromCart(id))
+    }
 
     const increaseQty = (id, qty, stock) => {
         const newQty = qty + 1;
@@ -46,7 +50,7 @@ const Cart = () => {
                     <Fragment>
                         <hr />
 
-                        <div className="cart-item">
+                        <div className="cart-item" key={item.product}>
                     <div className="row">
                         <div className="col-4 col-lg-3">
                             <img src={item.image} alt="Laptop" height="90" width="115" />
@@ -71,7 +75,7 @@ const Cart = () => {
                         </div>
 
                         <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                            <i id="delete_cart_item" className="fa fa-trash btn btn-danger"></i>
+                            <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={()=> removeItemFromCartHanlder(item.product)}></i>
                         </div>
 
                     </div>
