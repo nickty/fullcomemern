@@ -91,7 +91,7 @@ const Cart = () => {
                 <div id="order_summary">
                     <h4>Order Summary</h4>
                     <hr />
-                    <p>Subtotal:  <span className="order-summary-values">3 (Units)</span></p>
+                    <p>Subtotal:  <span className="order-summary-values"> {cartItems.reduce((acc, item) => acc + (Number(item.qty)), 0)} (Units)</span></p>
                     <p>Est. total: <span className="order-summary-values">$765.56</span></p>
     
                     <hr />
