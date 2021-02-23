@@ -11,7 +11,7 @@ import {addItemToCart, removeItemFromCart} from '../../actions/cartActions'
 import { Fragment } from 'react'
 
 
-const Cart = () => {
+const Cart = ({history}) => {
 
     const dispatch = useDispatch()
     const {cartItems} = useSelector(state => state.cart)
@@ -35,6 +35,10 @@ const Cart = () => {
         if(newQty <= 0) return;
 
         dispatch(addItemToCart(id, newQty))
+    }
+
+    const checkoutHandler = () => {
+        history.push('./login?redirect=shipping')
     }
 
     return (
@@ -95,7 +99,7 @@ const Cart = () => {
                     <p>Est. total: <span className="order-summary-values">{cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}</span></p>
     
                     <hr />
-                    <button id="checkout_btn" className="btn btn-primary btn-block">Check out</button>
+                    <button id="checkout_btn" className="btn btn-primary btn-block" onClick={checkoutHandler}>Check out</button>
                 </div>
             </div>
         </div>
