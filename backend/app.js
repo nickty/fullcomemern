@@ -15,10 +15,12 @@ app.use(fileupload())
 const products = require('./routes/product')
 const users = require('./routes/user')
 const order = require('./routes/order')
+const payment = require('./routes/payment')
 
 app.use('/api/v1', products)
 app.use('/api/v1', users)
 app.use('/api/v1', order)
+app.use('/api/v1', payment)
 
 //Middlewares to handle error
 app.use(errorMiddleware)
