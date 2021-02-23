@@ -19,6 +19,19 @@ const ConfirmOrder = ({history}) => {
     const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
     const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2)
 
+    const proceedToPayment = () => {
+        const data = {
+            itemsPrice: itemsPrice.toFixed(2), 
+            shippingPrice, 
+            taxPrice,
+            totalPrice
+        }
+
+        sessionStorage.setItem('orderInfo', JSON.stringify(data))
+
+        history.push('/')
+    }
+
     return (
         <Fragment>
             <MetaData title={'Confirm Order'} />
@@ -78,7 +91,7 @@ const ConfirmOrder = ({history}) => {
                         <p>Total: <span className="order-summary-values">${totalPrice}</span></p>
 
                         <hr />
-                        <button id="checkout_btn" className="btn btn-primary btn-block">Proceed to Payment</button>
+                        <button id="checkout_btn" className="btn btn-primary btn-block" onClick={proceedToPayment}>Proceed to Payment</button>
                     </div>
                 </div>
 			
