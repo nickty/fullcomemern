@@ -1,5 +1,6 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import axios from 'axios'
 
 import './App.css';
 import Header from './components/layout/Header'
@@ -25,9 +26,21 @@ import store from './store'
 
 
 function App() {
+
+  const [stripeApiKey, setStripeApiKey] = useState('')
   
   useEffect(() => {
     store.dispatch(loadUser())
+
+    async function getStripeApiKey() {
+      const {data} = await axios.get('/api/v1/stripeapi')
+
+      setStripeApiKey(data.stripeApiKey)
+
+
+    }
+
+    getStripeApiKey()
   }, [])
 
   return (
