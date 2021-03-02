@@ -79,7 +79,7 @@ const Payment = ({history}) => {
           document.querySelector('#pay_btn').disabled = false
         } else {
           //The payment is pcossed 
-          if(result.paymentIndent.status === 'succeeded'){
+          if(result.paymentIntent.status === 'succeeded'){
             //todo : new order 
 
             history.push('/success')
@@ -92,7 +92,7 @@ const Payment = ({history}) => {
       } catch (error) {
 
         document.querySelector('#pay_btn').disabled = false
-        alert.error(error.response.data.errMessage)
+        alert.error(error.response.data.message)
 
         console.log(error.response.data)
         
@@ -108,7 +108,7 @@ const Payment = ({history}) => {
             <div className="row wrapper">
 		<div className="col-10 col-lg-5">
             <form className="shadow-lg" onSubmit={submitHandler}>
-                <h1 className="mb-4">Card Info</h1>
+                <h1 className="mb-4">Card Information</h1>
                 <div className="form-group">
                   <label htmlFor="card_num_field">Card Number</label>
                   <CardNumberElement
