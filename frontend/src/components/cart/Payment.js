@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect}from 'react'
 
 import MetaData from '../layout/MetaData'
 
@@ -6,6 +6,8 @@ import {useAlert} from 'react-alert'
 
 import {useDispatch, useSelector} from 'react-redux'
 import { Fragment } from 'react'
+
+import {createOrder, clearErrors} from '../../actions/orderActions'
 
 import {useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement} from '@stripe/react-stripe-js'
 
@@ -34,7 +36,35 @@ const Payment = ({history}) => {
     const {user} = useSelector(state => state.user)
     const {cartItems, shippingInfo} = useSelector(state => state.cart)
 
+    const {error} = useSelector(state => state.newOrder)
+
+    useEffect(() => {
+      if(error){
+        alert.error(error)
+        dispatch(clearErrors())
+      }
+    }, [dispatch, alert, error])
+
+    const order = {
+      orderItems: cartItems, 
+      shippingInfo
+    }
+
+    // orderItems,
+    //     shippingInfo,
+    //     itemsPrice,
+    //     taxPrice,
+    //     shippingPrice,
+    //     totalPrice,
+    //     paymentInfo, 
+
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo')); 
+    if(orderInfo){
+      order.itemsPrice = orderInfo.itemsPrice 
+      order.shippingPrice = orderInfo.shippingPrice
+      order.taxPrice = orderInfo.taxPrice
+      order.totalPrice = orderInfo.totalPrice
+    }
 
     const paymentData = {
       amount : Math.round(orderInfo.totalPrice * 100)
@@ -80,7 +110,13 @@ const Payment = ({history}) => {
         } else {
           //The payment is pcossed 
           if(result.paymentIntent.status === 'succeeded'){
-            //todo : new order 
+           
+            order.paymentInfo = {
+              id: result.paymentIntent.id,
+              status: result.paymentIntent.status
+            }
+
+            dispatch(createOrder(order))
 
             history.push('/success')
           } else {
