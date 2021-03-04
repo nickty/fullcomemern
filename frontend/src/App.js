@@ -18,6 +18,8 @@ import Shipping from './components/cart/Shipping'
 import ConfirmOrder from './components/cart/ConfirmOrder'
 import Payment from './components/cart/Payment'
 
+import ListOrders from './components/order/ListOrders'
+
 import ProductDetails from './components/product/ProductDetails'
 
 import ProtectedRoute from './components/route/ProtectedRoute'
@@ -68,6 +70,8 @@ function App() {
                   <ProtectedRoute path="/me" component={Profile} exact />
                   <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
                   <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
+
+                  <ProtectedRoute path="/orders/me" component={ListOrders} exact />
               </div>
              
             <Footer />
