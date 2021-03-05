@@ -1,22 +1,28 @@
 import React, {useEffect, useState, Fragment} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getProductsDetails, clearErrors} from '../../actions/productActions'
+import {getProductsDetails, newReview, clearErrors} from '../../actions/productActions'
 import {useAlert} from 'react-alert'
 import Loader from '../layout/Loader'
 import MetaData from '../layout/MetaData'
 import {Carousel} from 'react-bootstrap'
 
 import {addItemToCart} from '../../actions/cartActions'
+import { NEW_REVIEW_RESET } from '../../constants/productConstants'
 
 const ProductDetails = ({match}) => {
 
     const [qty, setQty] = useState(1)
+
+    const [rating, setRating] = useState(0)
+    const [comment, setComment] = useState('')
 
     const dispatch = useDispatch()
     const alert = useAlert()
 
     const {loading, error, product} = useSelector(state=>state.productDetails)
     const {user} = useSelector(state => state.user)
+
+    const {error: reviewError, success} = useSelector(state => state.newReview)
 
     useEffect(()=>{
 
@@ -27,7 +33,18 @@ const ProductDetails = ({match}) => {
             dispatch(clearErrors())
         }
 
-    }, [dispatch, alert, error, match.params.id])
+        if(reviewError){
+            alert.error(reviewError)
+            dispatch(clearErrors())
+        }
+
+        if(success){
+            alert.success('Review posted successfully')
+            dispatch({type:NEW_REVIEW_RESET})
+        }
+
+
+    }, [dispatch, alert, error, reviewError, match.params.id, success])
 
     const addToCart = () => {
         dispatch(addItemToCart(match.params.id, qty))
@@ -70,6 +87,8 @@ const ProductDetails = ({match}) => {
                 if(e.type === 'click'){
                     if(index < this.starValue){
                         star.classList.add('orange')
+
+                        setRating(this.starValue)
                     } else {
                         star.classList.remove('orange')
                     }
@@ -88,6 +107,16 @@ const ProductDetails = ({match}) => {
                 }
             })
         }
+    }
+
+    const reviewHandler = () => {
+        const formData = new FormData(); 
+
+        formData.set('rating', rating)
+        formData.set('comment', comment)
+        formData.set('productId', match.params.id)
+        
+        dispatch(newReview(formData))
     }
 
     return (
@@ -169,11 +198,20 @@ const ProductDetails = ({match}) => {
                                             <li className="star"><i className="fa fa-star"></i></li>
                                         </ul>
 
-                                        <textarea name="review" id="review" className="form-control mt-3">
+                                        <textarea 
+                                        name="review" 
+                                        id="review" 
+                                        className="form-control mt-3" 
+                                        value={comment} 
+                                        onChange={e => setComment(e.target.value)}
+                                        >
 
                                         </textarea>
 
-                                        <button className="btn my-3 float-right review-btn px-4 text-white" data-dismiss="modal" aria-label="Close">Submit</button>
+                                        <button 
+                                        onClick={reviewHandler} 
+                                        className="btn my-3 float-right review-btn px-4 text-white" 
+                                        data-dismiss="modal" aria-label="Close">Submit</button>
                                     </div>
                                 </div>
                             </div>
