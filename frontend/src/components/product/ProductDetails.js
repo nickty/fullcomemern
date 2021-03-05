@@ -54,6 +54,42 @@ const ProductDetails = ({match}) => {
         setQty(qty)
     }
 
+    function setUserRatings(){
+        const stars = document.querySelectorAll('.star')
+
+        stars.forEach((star, index) => {
+            star.starValue = index + 1;
+
+            ['click', 'mouseover', 'mouseout'].forEach(function(e){
+                star.addEventListener(e, showRatings);
+            })
+        })
+
+        function showRatings(e){
+            stars.forEach((star, index) => {
+                if(e.type === 'click'){
+                    if(index < this.starValue){
+                        star.classList.add('orange')
+                    } else {
+                        star.classList.remove('orange')
+                    }
+                }
+
+                if(e.type === 'mouseover'){
+                    if(index < this.starValue){
+                        star.classList.add('yellow')
+                    } else {
+                        star.classList.remove('yellow')
+                    }
+                }
+
+                if(e.type === 'mouseout'){
+                    star.classList.remove('yellow')
+                }
+            })
+        }
+    }
+
     return (
         <Fragment>
             <MetaData title={product.name} />
@@ -105,7 +141,7 @@ const ProductDetails = ({match}) => {
                 <hr />
                 <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
 				
-                {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
+                {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>
                             Submit Your Review
                 </button> : <div className="alert alert-danger mt-5" type="alert">Login to post your review</div> 
                 }
