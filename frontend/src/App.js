@@ -32,6 +32,7 @@ import {loadUser} from './actions/userActions'
 import store from './store'
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import ProductList from './components/admin/ProductList';
 
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
 
                   </div>
                   <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
+                  <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductList} exact />
               
              
             <Footer />
