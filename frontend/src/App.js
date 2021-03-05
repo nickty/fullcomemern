@@ -4,6 +4,8 @@ import axios from 'axios'
 
 //admin imports
 import Dashboard from './components/admin/Dashboard'
+import ProductList from './components/admin/ProductList';
+import NewProduct from './components/admin/NewProduct'
 
 import './App.css';
 import Header from './components/layout/Header'
@@ -32,7 +34,7 @@ import {loadUser} from './actions/userActions'
 import store from './store'
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import ProductList from './components/admin/ProductList';
+
 
 
 function App() {
@@ -82,6 +84,7 @@ function App() {
                   </div>
                   <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
                   <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductList} exact />
+                  <ProtectedRoute path="/admin/product" isAdmin={true} component={NewProduct} exact />
               
              
             <Footer />

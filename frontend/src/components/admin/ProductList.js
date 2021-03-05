@@ -8,7 +8,8 @@ import Sidebar from './Sidebar'
 
 import {useAlert} from 'react-alert'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAdminProducts, clearErrors} from '../../actions/productActions'
+import {getAdminProducts, deleteProduct, clearErrors} from '../../actions/productActions'
+import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
 
 const ProductList = ({history}) => {
 
@@ -16,6 +17,7 @@ const ProductList = ({history}) => {
     const dispatch = useDispatch()
 
     const { loading, error, products } = useSelector(state => state.products)
+    const {error: deleteError, isDeleted } = useSelector(state => state.product)
 
     useEffect(() => {
         dispatch(getAdminProducts())
@@ -24,7 +26,18 @@ const ProductList = ({history}) => {
             alert.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error])
+
+        if(deleteError){
+            alert.error(deleteError)
+            dispatch(clearErrors())
+        }
+
+        if(isDeleted){
+            alert.success('Product deleted successfully')
+            history.push('/admin/products')
+            dispatch({type: DELETE_PRODUCT_RESET})
+        }
+    }, [dispatch, alert, error, deleteError, isDeleted, history])
 
     const setProducts = () => {
         const data = {
@@ -58,6 +71,7 @@ const ProductList = ({history}) => {
             rows: []
         }
 
+        
         products.forEach( product => {
             data.rows.push({
                 id: product._id, 
@@ -67,7 +81,7 @@ const ProductList = ({history}) => {
                 actions: <Fragment>
                     <Link to={`/admin/product/${product._id}`} className="btn btn-primary" py-1 px-2><i className="fa fa-pencil"></i></Link>
 
-                    <button className="btn btn-danger py-1 pl-2">
+                    <button className="btn btn-danger py-1 pl-2" onClick={ () => deleteProductHandler(product._id)}>
                         <i className="fa fa-trash"></i>
                     </button>
 
@@ -77,6 +91,11 @@ const ProductList = ({history}) => {
 
         return data
     }
+
+    const deleteProductHandler = (id) => {
+        dispatch(deleteProduct(id))
+    }
+
 
 
     return (
