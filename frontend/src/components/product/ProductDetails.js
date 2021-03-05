@@ -8,6 +8,7 @@ import {Carousel} from 'react-bootstrap'
 
 import {addItemToCart} from '../../actions/cartActions'
 import { NEW_REVIEW_RESET } from '../../constants/productConstants'
+import ListReviews from '../review/ListReviews'
 
 const ProductDetails = ({match}) => {
 
@@ -223,6 +224,11 @@ const ProductDetails = ({match}) => {
 
         </div>
         </div>
+
+
+        {product.reviews && product.reviews.length > 0 && (
+           <ListReviews reviews={product.reviews} />
+        )}
 
             </Fragment>
         )}
