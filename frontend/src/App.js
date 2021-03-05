@@ -19,6 +19,7 @@ import ConfirmOrder from './components/cart/ConfirmOrder'
 import Payment from './components/cart/Payment'
 
 import ListOrders from './components/order/ListOrders'
+import OrderDetails from './components/order/OrderDetails'
 
 import ProductDetails from './components/product/ProductDetails'
 
@@ -72,6 +73,7 @@ function App() {
                   <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
 
                   <ProtectedRoute path="/orders/me" component={ListOrders} exact />
+                  <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
               </div>
              
             <Footer />

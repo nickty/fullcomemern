@@ -31,27 +31,27 @@ const ListOrders = () => {
         const data = {
             columns: [
                 {
-                    lablel: 'Order ID', 
+                    label: 'Order ID', 
                     field: 'id',
                     sort: 'asc'
                 },
                 {
-                    lablel: 'Num of Items', 
+                    label: 'Num of Items', 
                     field: 'numOfItems',
                     sort: 'asc'
                 },
                 {
-                    lablel: 'Amount', 
+                    label: 'Amount', 
                     field: 'amount',
                     sort: 'asc'
                 },
                 {
-                    lablel: 'Status', 
+                    label: 'Status', 
                     field: 'status',
                     sort: 'asc'
                 },
                 {
-                    lablel: 'Actions', 
+                    label: 'Actions', 
                     field: 'actions',
                     sort: 'asc'
                 }
