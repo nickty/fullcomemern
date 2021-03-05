@@ -3,6 +3,10 @@ import {
     ALL_PRODUCT_SUCCESS, 
     ALL_PRODUCT_REQUEST, 
     ALL_PRODUCT_FAIL, 
+    NEW_PRODUCT_REQUEST,
+    NEW_PRODUCT_SUCCESS,
+    NEW_PRODUCT_RESET,
+    NEW_PRODUCT_FAIL,
     ADMIN_PRODUCT_REQUEST,
     ADMIN_PRODUCT_SUCCESS,
     ADMIN_PRODUCT_FAIL,
@@ -68,6 +72,8 @@ export const getProductsDetails = (id) => async (dispatch) => {
     }
 }
 
+
+
 export const newReview = (reviewData) => async (dispatch) => {
     try {
 
@@ -96,6 +102,33 @@ export const newReview = (reviewData) => async (dispatch) => {
     }
 }
 
+export const newProduct = (productData) => async (dispatch) => {
+    try {
+
+        dispatch({
+            type: NEW_PRODUCT_REQUEST
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const {data} = await axios.put(`/api/v1/product/new`, productData, config)
+
+        dispatch({
+            type: NEW_PRODUCT_SUCCESS,
+            payload: data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: NEW_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 
 export const getAdminProducts = () => async (dispatch) => {
     try {
