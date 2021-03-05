@@ -16,6 +16,7 @@ const ProductDetails = ({match}) => {
     const alert = useAlert()
 
     const {loading, error, product} = useSelector(state=>state.productDetails)
+    const {user} = useSelector(state => state.user)
 
     useEffect(()=>{
 
@@ -104,9 +105,11 @@ const ProductDetails = ({match}) => {
                 <hr />
                 <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
 				
-				<button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
+                {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
                             Submit Your Review
-                </button>
+                </button> : <div className="alert alert-danger mt-5" type="alert">Login to post your review</div> 
+                }
+				
 				
 				<div className="row mt-2 mb-5">
                     <div className="rating w-50">
