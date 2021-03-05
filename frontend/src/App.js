@@ -2,6 +2,9 @@ import {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import axios from 'axios'
 
+//admin imports
+import Dashboard from './components/admin/Dashboard'
+
 import './App.css';
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -74,7 +77,10 @@ function App() {
 
                   <ProtectedRoute path="/orders/me" component={ListOrders} exact />
                   <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
-              </div>
+
+                  </div>
+                  <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
+              
              
             <Footer />
           </div>
