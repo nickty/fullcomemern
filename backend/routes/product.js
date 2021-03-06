@@ -12,7 +12,7 @@ router.route('/admin/products').get(getAdminProducts)
 
 router.route('/product/:id').get(getSingleProduct)
 
-router.route('/product/:id').put(isAuthenticatedUser, authorizeRole('admin'), updateProduct)
+router.route('/admin/product/:id').put(isAuthenticatedUser, authorizeRole('admin'), updateProduct)
 
 router.route('/admin/product/:id').delete(isAuthenticatedUser, authorizeRole('admin'), deleteProduct)
 
