@@ -65,7 +65,7 @@ exports.allOrders = catchAsyncErrors (async (req, res, next) => {
 
     let totalAmount = 0
 
-    order.forEach(order => {
+    orders.forEach(order => {
         totalAmount += order.totalPrice
     })
 
