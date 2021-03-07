@@ -3,15 +3,15 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
 import {productsReducer, productDetailsReducer, newReviewReducer, newProductReducer, productReducer} from './reducers/productReducers'
-import {userReducer, updateReducer, forgotPasswordReducer, allUsersReducer} from './reducers/userReducers'
+import {userReducer, updateReducer, forgotPasswordReducer, allUsersReducer, userDetailsReducer} from './reducers/userReducers'
 import {cartReducer} from './reducers/cartReducers'
 import { newOrderReducer, myOrderReducer, orderDetailsReducer, allOrdersReducer, orderReducer} from './reducers/orderReducers'
 
 const reducer = combineReducers({
     products : productsReducer, 
     productDetails : productDetailsReducer, 
-    user: userReducer, 
-    update: updateReducer, 
+    auth: userReducer, 
+    user: updateReducer, 
     forgotPasswordReducer: forgotPasswordReducer, 
     cart: cartReducer, 
     newOrder: newOrderReducer,
@@ -22,7 +22,8 @@ const reducer = combineReducers({
     product: productReducer,
     allOrders: allOrdersReducer,
     order: orderReducer,
-    allUsers: allUsersReducer
+    allUsers: allUsersReducer,
+    userDetails: userDetailsReducer
 })
 
 let initialState = {

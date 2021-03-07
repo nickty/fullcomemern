@@ -38,6 +38,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import OrderList from './components/admin/OrderList';
 import ProcessOrder from './components/admin/ProcessOrder';
 import UserList from './components/admin/UserList';
+import UpdateUser from './components/admin/UpdateUser';
 
 
 
@@ -93,6 +94,7 @@ function App() {
 
                   <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrderList} exact />
                   <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} exact />
+                  <ProtectedRoute path="/admin/user/:id" isAdmin={true} component={UpdateUser} exact />
 
                   <ProtectedRoute path="/admin/users" isAdmin={true} component={UserList} exact />
               
