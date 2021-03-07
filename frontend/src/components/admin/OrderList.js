@@ -93,31 +93,31 @@ const OrderList = () => {
 
     return (
         <Fragment>
-        <MetaData title={'All Orders'} />
-        <div className="row">
-            <div className="col-12 col-md-2">
-                <Sidebar />
-            </div>
+            <MetaData title={'All Orders'} />
+            <div className="row">
+                <div className="col-12 col-md-2">
+                    <Sidebar />
+                </div>
 
-            <div className="col-12 col-md-10">
-                <Fragment>
-                    <h1 className="my-5">All Orders</h1>
+                <div className="col-12 col-md-10">
+                    <Fragment>
+                        <h1 className="my-5">All Orders</h1>
 
-                    {loading ? <Loader /> : (
-                         <MDBDataTable
-                         data= {setOrders()}
-                         className = "px-3"
-                         bordered
-                         striped
-                         hover
-                     />
-                    )}
-                </Fragment>
+                        {loading ? <Loader /> : (
+                            <MDBDataTable
+                            data= {setOrders()}
+                            className = "px-3"
+                            bordered
+                            striped
+                            hover
+                        />
+                        )}
+                    </Fragment>
+                </div>
             </div>
-        </div>
-        
-        
-    </Fragment>
+            
+            
+        </Fragment>
     )
 }
 

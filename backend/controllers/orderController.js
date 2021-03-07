@@ -3,7 +3,7 @@ const Product = require('../models/product')
 
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
-const order = require('../models/order')
+
 
 //Create a new order => /api/v1/order/new
 exports.newOrder = catchAsyncErrors (async (req, res, next) => {
@@ -79,14 +79,15 @@ exports.allOrders = catchAsyncErrors (async (req, res, next) => {
 
 //update / process order => /api/v1/admin/order/:id
 exports.UpdateOrder = catchAsyncErrors (async (req, res, next) => {
+    
     const order = await Order.find(req.params.id)
 
-   if(order.orderStatus === 'Delivered'){
-       return next(new ErrorHandler('Your have alread delivered this product', 400))
-   }
+    if(order.orderStatus === 'Delivered'){
+       return next(new ErrorHandler('Your have already delivered this product', 400))
+     }
 
    order.orderItems.forEach(async item => {
-       await updateStock(item.product, item.quantity)
+       await updateStock(item.product, item.qty)
    })
 
    order.status = req.body.status, 
