@@ -59,10 +59,10 @@ const productSchema = new mongoose.Schema({
         required: [true, 'Please enter product seller']
     },
     stock: {
-        type: Number,
+        type: String,
         required: [true, 'Please endter product stock'],
         maxLength: [5, 'You cannot stock more than 5'],
-        default: 0
+        default: 0.0
     },
     numOfReviews: {
         type: Number,
