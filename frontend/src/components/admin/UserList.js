@@ -9,7 +9,7 @@ import Sidebar from './Sidebar'
 import {useAlert} from 'react-alert'
 import {useDispatch, useSelector} from 'react-redux'
 import {allUsers, deleteUser, clearErrors} from '../../actions/userActions'
-import { DELETE_USER_RESET } from '../../actions/userConstants'
+import { DELETE_USER_RESET } from '../../constants/userConstants'
 
 const UserList = ({history}) => {
 
@@ -17,7 +17,7 @@ const UserList = ({history}) => {
     const dispatch = useDispatch()
 
     const { loading, error, users } = useSelector(state => state.allUsers)
-    const {isDeleted} = useSelector(state => state.user)
+    const {isDeleted} = useSelector(state => state.update)
     
     useEffect(() => {
         dispatch(allUsers())
