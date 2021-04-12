@@ -77,6 +77,8 @@ const Home = ({ match }) => {
                 <Fragment>
                     <MetaData title={'Buy best products online'} />
 
+                    <img src="/images/banner.jpg" width="1100" alt="krishi ponno birat hat" className="img-responsive" />
+
                     <h1 id="products_heading">Latest Products</h1>
 
                     <section id="products" className="container mt-5">

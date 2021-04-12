@@ -19,11 +19,7 @@ const Login = ({history, location}) => {
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
-    useEffect(() => {
-
-        if(isAuthenticated){
-            history.push(redirect)
-        }
+    useEffect(() =>  {
 
         if(error){
             alert.error(error)
