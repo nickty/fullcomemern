@@ -144,13 +144,13 @@ const ProductDetails = ({match}) => {
                 <hr />
 
                 <div className="rating-outer">
-                <div className="rating-inner" style={{with: `${(product.rating / 5) *100}%`}}></div>
+                <div className="rating-inner" style={{with: `${(product.ratings / 5) *100}%`}}></div>
                 </div>
                 <span id="no_of_reviews">({product.numberOfReviews} Reviews)</span>
 
                 <hr />
 
-                <p id="product_price">${product.price}</p>
+                <p id="product_price">{product.price} Tk</p>
                 <div className="stockCounter d-inline">
                     <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
